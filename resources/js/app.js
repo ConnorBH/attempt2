@@ -7,7 +7,9 @@ createInertiaApp({
     const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
 
     const page = await pages[`./Pages/${name}.vue`]
-    page.default.layout = page.default.layout || MainLayout
+    if (page && page.default) {
+      page.default.layout = page.default.layout || MainLayout
+    }
 
     return page
   },
